@@ -1,0 +1,17 @@
+/* ===============================
+   GLOBAL VARIABLES
+   ===============================
+
+   -app-bg: #0D0E11;
+    -fx-background-color: -app-bg;
+   */
+
+.root {
+
+    -app-bg: green;
+    -app-text: #F1EFE9;
+    -app-button-hover-bg: #D8D6CE;
+    -app-button-hover-text: #B89126;
+    -fx-background-color: green;
+}
+

@@ -1,0 +1,25 @@
+.sidebar-toggle {
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-background-insets: 0;
+    -fx-cursor: hand;
+}
+
+.sidebar-toggle:hover {
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-background-insets: 0;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+.sidebar-toggle:armed,
+.sidebar-toggle:focused {
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+}
+
+.toggleIcon {
+    -fx-stroke: red;
+    -fx-stroke-width: 1;
+}

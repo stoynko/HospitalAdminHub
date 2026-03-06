@@ -1,0 +1,13 @@
+
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="contextRoot"
+           xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1"
+           prefWidth="260"
+           minWidth="260"
+           maxWidth="260">
+
+    <!--<VBox fx:reference="toolContainer" spacing="6"/>-->
+
+</StackPane>
