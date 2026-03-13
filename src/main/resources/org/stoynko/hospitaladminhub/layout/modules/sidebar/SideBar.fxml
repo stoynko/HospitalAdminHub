@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.stoynko.hospitaladminhub.core.controllers.SideBarController">
+
+    <!-- ICON BAR -->
+    <fx:include fx:id="iconBar"
+                source="/org/stoynko/hospitaladminhub/layout/modules/sidebar/IconBar.fxml"
+                AnchorPane.leftAnchor="0.0"
+                AnchorPane.topAnchor="0.0"
+                AnchorPane.bottomAnchor="0.0"/>
+
+    <!-- CONTEXT PANEL -->
+    <StackPane fx:id="contextPanel"
+               layoutX="50.0"
+               prefWidth="0.0"
+               minWidth="0.0"
+               maxWidth="0.0"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.bottomAnchor="0.0"/>
+</AnchorPane>

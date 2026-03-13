@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx/25"
+      spacing="10"
+      alignment="CENTER"
+      prefWidth="260"
+      style="-fx-background-color:#2b2d31; -fx-padding:20;">
+
+    <Label text="Patients Panel"
+           style="-fx-text-fill:white; -fx-font-size:18px;" />
+
+    <Button text="Patients 2026"/>
+    <Button text="Patients 2025"/>
+    <Button text="Other"/>
+</VBox>
