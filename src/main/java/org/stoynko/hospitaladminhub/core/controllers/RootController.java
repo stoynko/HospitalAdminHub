@@ -9,6 +9,12 @@ import static org.stoynko.hospitaladminhub.ui.modules.ModuleReference.*;
 
 public class RootController {
 
+    private final FXMLViewLoader viewLoader;
+
+    public RootController(FXMLViewLoader viewLoader) {
+        this.viewLoader = viewLoader;
+    }
+
     @FXML
     public StackPane contentHost;
 
@@ -18,16 +24,15 @@ public class RootController {
     @FXML
     public void initialize() {
         loadSidebar();
-        loadMainModule();
     }
 
     private void loadSidebar() {
-        FXMLView<?> sidebar = FXMLViewLoader.load(SIDEBAR_MODULE);
+        FXMLView<?> sidebar = viewLoader.load(SIDEBAR_MODULE);
         sidebarHost.getChildren().setAll(sidebar.getRoot());
     }
 
     private void loadMainModule() {
-        FXMLView<?> module = FXMLViewLoader.load(DASHBOARD_MODULE);
+        FXMLView<?> module = viewLoader.load(DASHBOARD_MODULE);
         contentHost.getChildren().setAll(module.getRoot());
     }
 }

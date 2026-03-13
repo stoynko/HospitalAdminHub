@@ -3,16 +3,27 @@ package org.stoynko.hospitaladminhub.core.controllers;
 import java.util.function.Consumer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import org.stoynko.hospitaladminhub.core.tools.FeatureMetaData;
 import org.stoynko.hospitaladminhub.core.tools.FeatureReference;
 import org.stoynko.hospitaladminhub.core.tools.FeatureRegistry;
+import org.stoynko.hospitaladminhub.core.utility.IconFactory;
 
 public class IconBarController {
+
+    private FXMLLoader fxmlLoader;
+
+    private IconFactory iconFactory;
+
+    private FeatureRegistry featureRegistry;
+
+    private Consumer<FeatureReference> featureHandler;
 
     @FXML
     public Button buttonDashboard;
@@ -20,24 +31,20 @@ public class IconBarController {
     @FXML
     private VBox iconBar;
 
-    private Consumer<FeatureReference> toolHandler;
-
-    private FeatureRegistry featureRegistry;
-
-    public void setToolHandler(Consumer<FeatureReference> handler) {
-        this.toolHandler = handler;
+    public void setFeatureHandler(Consumer<FeatureReference> handler) {
+        this.featureHandler = handler;
     }
+
 
     @FXML
     public void initialize() {
-        featureRegistry = FeatureRegistry.createDefault();
         configureButtons(iconBar);
     }
 
     private void configureButton(Button button) {
 
         Object data = button.getUserData();
-
+        System.out.println("Configuring button: " + data);
         if (data == null) {
             return;
         }
@@ -47,22 +54,21 @@ public class IconBarController {
         FeatureMetaData featureMetaData = featureRegistry.getMetaData(featureReference);
         button.setGraphic(featureMetaData.getIcon());
         button.setOnAction(_ -> {
-            if (toolHandler != null) {
-                toolHandler.accept(featureReference);
+            if (featureHandler != null) {
+                featureHandler.accept(featureReference);
             }
         });
     }
 
-    private void configureButtons(Parent parent) {
+    private void configureButtons(Node node) {
 
-        for (Node node : parent.getChildrenUnmodifiable()) {
+        if (node instanceof Button button) {
+            configureButton(button);
+        }
 
-            if (node instanceof Button button) {
-                configureButton(button);
-            }
-
-            if (node instanceof Parent childParent) {
-                configureButtons(childParent);
+        if (node instanceof Pane pane) {
+            for (Node child : pane.getChildren()) {
+                configureButtons(child);
             }
         }
     }
