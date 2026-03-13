@@ -28,7 +28,7 @@
 }
 
 .icon-bar-button:hover {
-    -fx-background-color: -app-bg;
+    -fx-background-color: red;
 }
 
 /* SVG STYLING */

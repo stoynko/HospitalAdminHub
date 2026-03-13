@@ -1,6 +1,6 @@
 package org.stoynko.hospitaladminhub.ui;
 
-public enum Icons {
+public enum Icon {
 
     ICON_ANALYTICS ("M4.5 16.5H14.5M6.5 12.5V16.5M12.5 12.5V16.5M6.5 8.5V4.5M9.5 8.5V7.5M12.5 8.5V6.5M0.5 1.5C0.5 1.23478 0.605357 0.98043 0.792893 0.792893C0.98043 0.605357 1.23478 0.5 1.5 0.5H17.5C17.7652 0.5 18.0196 0.605357 18.2071 0.792893C18.3946 0.98043 18.5 1.23478 18.5 1.5V11.5C18.5 11.7652 18.3946 12.0196 18.2071 12.2071C18.0196 12.3946 17.7652 12.5 17.5 12.5H1.5C1.23478 12.5 0.98043 12.3946 0.792893 12.2071C0.605357 12.0196 0.5 11.7652 0.5 11.5V1.5Z"),
     ICON_DASHBOARD ("""
@@ -11,7 +11,7 @@ public enum Icons {
 
     private final String path;
 
-    Icons(String path) {
+    Icon(String path) {
         this.path = path;
     }
 

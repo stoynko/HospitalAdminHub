@@ -1,14 +1,15 @@
 package org.stoynko.hospitaladminhub.core.tools.implementations;
 
+import javafx.scene.Node;
 import org.stoynko.hospitaladminhub.core.tools.AbstractFXMLFeature;
-import org.stoynko.hospitaladminhub.core.tools.FeatureMetaData;
 import org.stoynko.hospitaladminhub.core.tools.FeatureReference;
 import org.stoynko.hospitaladminhub.ui.Paths;
+import org.stoynko.hospitaladminhub.ui.view.FXMLViewLoader;
 
 public class FeatureAnalyticsImpl extends AbstractFXMLFeature {
 
-    public FeatureAnalyticsImpl(FeatureMetaData featureMetaData) {
-        super(featureMetaData);
+    public FeatureAnalyticsImpl(FXMLViewLoader fxmlViewLoader) {
+        super(fxmlViewLoader);
     }
 
     @Override
@@ -17,7 +18,7 @@ public class FeatureAnalyticsImpl extends AbstractFXMLFeature {
     }
 
     @Override
-    protected String viewPath() {
-        return Paths.ANALYTICS_TOOL_FXML.getPath();
+    public Node getPanel() {
+        return loadView(Paths.ANALYTICS_TOOL_FXML.getPath());
     }
 }

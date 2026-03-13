@@ -15,7 +15,7 @@
     <!-- MENU ITEMS -->
     <VBox alignment="TOP_CENTER" prefHeight="165.0" prefWidth="108.0" spacing="10">
 
-        <Button fx:id="buttonDashboard" styleClass="icon-bar-button" contentDisplay="GRAPHIC_ONLY"/>
+        <Button fx:id="buttonDashboard" userData="ANALYTICS_REFERENCE" styleClass="icon-bar-button" contentDisplay="GRAPHIC_ONLY"/>
 
         <Region prefHeight="50"/>
 
