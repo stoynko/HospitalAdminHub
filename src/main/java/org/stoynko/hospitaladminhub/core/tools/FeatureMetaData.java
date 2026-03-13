@@ -1,15 +1,15 @@
 package org.stoynko.hospitaladminhub.core.tools;
 
-import javafx.scene.Node;
+import org.stoynko.hospitaladminhub.ui.Icon;
 
 public final class FeatureMetaData {
 
     private final FeatureReference reference;
     private final String fxmlPath;
     private final String cssPath;
-    private final Node icon;
+    private final Icon icon;
 
-    public FeatureMetaData(FeatureReference reference, String fxmlPath, String cssPath, Node icon) {
+    public FeatureMetaData(FeatureReference reference, String fxmlPath, String cssPath, Icon icon) {
         this.reference = reference;
         this.fxmlPath = fxmlPath;
         this.cssPath = cssPath;
@@ -28,7 +28,7 @@ public final class FeatureMetaData {
         return this.cssPath;
     }
 
-    public Node getIcon() {
+    public Icon getIcon() {
         return this.icon;
     }
 }

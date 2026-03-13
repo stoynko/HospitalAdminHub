@@ -1,7 +1,5 @@
 package org.stoynko.hospitaladminhub.bootstrap;
 
-import org.stoynko.hospitaladminhub.core.controllers.IconBarController;
-import org.stoynko.hospitaladminhub.core.controllers.SideBarController;
 import org.stoynko.hospitaladminhub.core.tools.FeatureRegistry;
 import org.stoynko.hospitaladminhub.ui.view.FXMLViewLoader;
 
@@ -11,17 +9,19 @@ public class ApplicationBootstrapper {
 
     public void initialize() {
 
-        FeatureRegistry registry = FeatureRegistry.createDefault();
-        services.register(FeatureRegistry.class, registry);
+        FXMLControllerFactory fxmlControllerFactory = new FXMLControllerFactory(services);
+        services.register(FXMLControllerFactory.class, fxmlControllerFactory);
 
-        FXControllerFactory fxControllerFactory = new FXControllerFactory(services);
-        services.register(FXControllerFactory.class, fxControllerFactory);
+        FXMLViewLoader fxmlViewLoader = new FXMLViewLoader(services, fxmlControllerFactory);
+        services.register(FXMLViewLoader.class, fxmlViewLoader);
 
-        FXMLViewLoader viewLoader = new FXMLViewLoader(services, fxControllerFactory);
-        services.register(FXMLViewLoader.class, viewLoader);
+        FeatureBootstrapper featureBootstrapper = new FeatureBootstrapper(fxmlViewLoader);
+
+        FeatureRegistry featureRegistry = featureBootstrapper.initialize();
+        services.register(FeatureRegistry.class, featureRegistry);
     }
 
-    public ServiceRegistry services() {
+    public ServiceRegistry getServices() {
         return services;
     }
 }

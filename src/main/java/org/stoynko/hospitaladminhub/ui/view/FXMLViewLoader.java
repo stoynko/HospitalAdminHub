@@ -2,7 +2,7 @@ package org.stoynko.hospitaladminhub.ui.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import org.stoynko.hospitaladminhub.bootstrap.FXControllerFactory;
+import org.stoynko.hospitaladminhub.bootstrap.FXMLControllerFactory;
 import org.stoynko.hospitaladminhub.bootstrap.ServiceRegistry;
 import org.stoynko.hospitaladminhub.ui.modules.ModuleRepository;
 import org.stoynko.hospitaladminhub.ui.modules.ModuleReference;
@@ -14,11 +14,11 @@ import java.util.Objects;
 public class FXMLViewLoader {
 
     private final ServiceRegistry serviceRegistry;
-    private final FXControllerFactory fxControllerFactory;
+    private final FXMLControllerFactory controllerFactory;
 
-    public FXMLViewLoader(ServiceRegistry serviceRegistry, FXControllerFactory fxControllerFactory) {
+    public FXMLViewLoader(ServiceRegistry serviceRegistry, FXMLControllerFactory controllerFactory) {
         this.serviceRegistry = serviceRegistry;
-        this.fxControllerFactory = fxControllerFactory;
+        this.controllerFactory = controllerFactory;
     }
 
     public <T> FXMLView<T> load(ModuleReference module) {
@@ -35,7 +35,7 @@ public class FXMLViewLoader {
             );
 
             FXMLLoader loader = new FXMLLoader(resource);
-            loader.setControllerFactory(fxControllerFactory);
+            loader.setControllerFactory(controllerFactory);
 
             Parent root = loader.load();
             T controller = loader.getController();

@@ -7,13 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.stoynko.hospitaladminhub.bootstrap.ServiceRegistry;
+
 import org.stoynko.hospitaladminhub.core.tools.FeatureReference;
 import org.stoynko.hospitaladminhub.core.tools.FeatureRegistry;
+import org.stoynko.hospitaladminhub.ui.Paths;
 import org.stoynko.hospitaladminhub.ui.view.FXMLView;
 import org.stoynko.hospitaladminhub.ui.view.FXMLViewLoader;
-
-import java.util.function.Consumer;
 
 import static org.stoynko.hospitaladminhub.ui.Durations.SHORT_SPEED;
 import static org.stoynko.hospitaladminhub.ui.LayoutConstraints.CONTEXT_PANEL_WIDTH;
@@ -21,17 +20,15 @@ import static org.stoynko.hospitaladminhub.ui.LayoutConstraints.ZERO;
 
 public class SideBarController {
 
-    private FXMLViewLoader fxmlViewLoader;
-    private ServiceRegistry serviceRegistry;
-    private FeatureRegistry featureRegistry;
+    private final FXMLViewLoader fxmlViewLoader;
 
-    private Consumer<FeatureReference> feature;
+    private final FeatureRegistry featureRegistry;
 
     @FXML
     private StackPane contextPanel;
 
-    //@FXML
-    //private IconBarController iconBarController;
+    @FXML
+    private StackPane iconBarContainer;
 
     private FeaturePanelHost featurePanelHost;
 
@@ -39,22 +36,19 @@ public class SideBarController {
 
     private boolean panelVisible = false;
 
-    public SideBarController(FXMLViewLoader fxmlViewLoader, FeatureRegistry featureRegistry, ServiceRegistry serviceRegistry) {
+    public SideBarController(FXMLViewLoader fxmlViewLoader, FeatureRegistry featureRegistry) {
         this.featureRegistry = featureRegistry;
         this.fxmlViewLoader = fxmlViewLoader;
-        this.serviceRegistry = serviceRegistry;
     }
     @FXML
     public void initialize() {
-        FXMLViewLoader loader = serviceRegistry.get(FXMLViewLoader.class);
 
-        FXMLView<IconBarController> view =
-                loader.loadFromPath("/org/stoynko/.../IconBar.fxml");
-
-        iconBarContainer.getChildren().add(view.root());
+        FXMLView<IconBarController> view = fxmlViewLoader.loadFromPath(Paths.ICON_BAR_FXML.getPath());
+        iconBarContainer.getChildren().add(view.getRoot());
 
         featurePanelHost = new FeaturePanelHost(contextPanel);
 
+        IconBarController iconBarController = view.getController();
         iconBarController.setFeatureHandler(this::openFeature);
 
         Rectangle clip = new Rectangle();

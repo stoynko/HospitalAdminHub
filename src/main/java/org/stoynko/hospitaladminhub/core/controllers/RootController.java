@@ -11,15 +11,15 @@ public class RootController {
 
     private final FXMLViewLoader viewLoader;
 
+    @FXML
+    private StackPane contentHost;
+
+    @FXML
+    private StackPane sidebarHost;
+
     public RootController(FXMLViewLoader viewLoader) {
         this.viewLoader = viewLoader;
     }
-
-    @FXML
-    public StackPane contentHost;
-
-    @FXML
-    public StackPane sidebarHost;
 
     @FXML
     public void initialize() {
@@ -29,10 +29,5 @@ public class RootController {
     private void loadSidebar() {
         FXMLView<?> sidebar = viewLoader.load(SIDEBAR_MODULE);
         sidebarHost.getChildren().setAll(sidebar.getRoot());
-    }
-
-    private void loadMainModule() {
-        FXMLView<?> module = viewLoader.load(DASHBOARD_MODULE);
-        contentHost.getChildren().setAll(module.getRoot());
     }
 }

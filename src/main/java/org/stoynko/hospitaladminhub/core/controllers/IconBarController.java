@@ -3,9 +3,7 @@ package org.stoynko.hospitaladminhub.core.controllers;
 import java.util.function.Consumer;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -17,28 +15,24 @@ import org.stoynko.hospitaladminhub.core.utility.IconFactory;
 
 public class IconBarController {
 
-    private FXMLLoader fxmlLoader;
-
-    private IconFactory iconFactory;
-
-    private FeatureRegistry featureRegistry;
-
-    private Consumer<FeatureReference> featureHandler;
-
+    private final FeatureRegistry featureRegistry;
     @FXML
     public Button buttonDashboard;
-
+    private Consumer<FeatureReference> featureHandler;
     @FXML
     private VBox iconBar;
 
-    public void setFeatureHandler(Consumer<FeatureReference> handler) {
-        this.featureHandler = handler;
+    public IconBarController(FeatureRegistry featureRegistry) {
+        this.featureRegistry = featureRegistry;
     }
-
 
     @FXML
     public void initialize() {
         configureButtons(iconBar);
+    }
+
+    public void setFeatureHandler(Consumer<FeatureReference> handler) {
+        this.featureHandler = handler;
     }
 
     private void configureButton(Button button) {
@@ -52,7 +46,7 @@ public class IconBarController {
         FeatureReference featureReference = FeatureReference.valueOf(data.toString());
 
         FeatureMetaData featureMetaData = featureRegistry.getMetaData(featureReference);
-        button.setGraphic(featureMetaData.getIcon());
+        button.setGraphic(IconFactory.create(featureMetaData.getIcon()));
         button.setOnAction(_ -> {
             if (featureHandler != null) {
                 featureHandler.accept(featureReference);
